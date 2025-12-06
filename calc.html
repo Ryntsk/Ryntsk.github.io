@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор сложного процента</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon"  href="Pics/triangle.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .calculator{max-width:1100px;margin:100px auto 80px;padding:40px;background:rgba(10,10,10,0.8);border:1px solid #222;border-radius:16px;box-shadow:0 0 40px rgba(0,255,150,0.08);}
+        
+        .intro-text{
+    text-align:center;
+    max-width:860px;
+    margin:60px auto;     /* вот это главное изменение */
+    font-size:1.22rem;
+    line-height:1.58;
+    color:#bbb;
+    font-weight:300;
+}
+        .intro-text strong{color:#0f9;font-weight:600;}
+        .intro-text .quote{
+            margin:38px auto;
+            max-width:700px;
+            font-style:italic;
+            color:#0f9;
+            font-size:1.38rem;
+            line-height:1.5;
+            opacity:0.92;
+        }
+
+        h2.calc-title{
+            font-size:4.2rem;
+            text-align:center;
+            margin-bottom:55px;
+            color:#0f9;
+        }
+
+        .calc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;margin-bottom:40px;}
+        .input-group{position:relative;}
+        label{margin-bottom:10px;font-size:1.1rem;color:#aaa;display:block;}
+        input,select{padding:14px 16px;font-size:1.2rem;background:#111;border:1px solid #333;border-radius:10px;color:#fff;outline:none;transition:all .3s;}
+        input:focus,select:focus{border-color:#0f9;box-shadow:0 0 15px rgba(0,255,150,0.3);}
+        .limit-note {
+    font-size: 0.82rem;
+    color: #88ffaa;       /* мягкий светло-зелёный */
+    margin-top: 6px;
+    opacity: 0.7;
+}
+
+        .results{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin:60px 0 50px;padding:35px;background:rgba(0,255,150,0.04);border-left:4px solid #0f9;border-radius:0 12px 12px 0;}
+        .result-item{text-align:center;}
+        .result-item strong{display:block;color:#0f9;font-size:2.1rem;margin-bottom:8px;}
+        .result-item span{color:#888;font-size:0.95rem;}
+
+        .chart-container{position:relative;height:440px;margin:60px 0 20px;background:#0a0a0a;border:1px solid #222;border-radius:12px;padding:20px;}
+
+        @media(max-width:768px){
+            .calculator{padding:25px;margin:40px 15px;}
+            .intro-text{font-size:1.15rem;line-height:1.55;}
+            h2.calc-title{font-size:3.4rem;margin-bottom:45px;}
+            .chart-container{height:320px;}
+        }
+    </style>
+</head>
+<body>
+
+<header class="fixed-header">
+    <div class="nav-tiles">
+        <a href="index.html" class="tile">Главная</a>
+        <a href="buy.html" class="tile">Что купить</a>
+        <a href="ex.html" class="tile">Биржи</a>
+        <a href="Analysis.html" class="tile">Анализ</a>
+        <a href="calc.html" class="tile active">Калькулятор</a>
+    </div>
+</header>
+
+<!-- Вступительный текст -->
+    <div class="intro-text">
+        <p><strong>Сложный процент</strong> — один из самых мощных механизмов создания капитала в инвестициях.</p>
+        <p>Его суть заключается в том, что полученная доходность не изымается, а реинвестируется. В результате проценты начинают начисляться уже не только на первоначальную сумму, но и на ранее накопленную прибыль. Это приводит к экспоненциальному росту капитала: чем дольше период инвестирования, тем сильнее проявляется эффект.</p>
+        <div class="quote">
+            «Сложный процент — восьмое чудо света.<br>
+            Тот, кто понимает его — зарабатывает,<br>
+            тот, кто не понимает — платит».<br><br>
+            <small>— приписывается Альберту Эйнштейну / Уоррену Баффетту</small>
+        </div>
+        <p>Ниже — точный калькулятор с учётом регулярных пополнений и разных режимов капитализации. Он поможет спрогнозировать рост вашего капитала и принять обоснованное решение о долгосрочной стратегии.</p>
+    </div>
+
+<div class="calculator">
+
+    
+
+    <!-- Заголовок калькулятора -->
+    <h2 class="calc-title">Калькулятор сложного процента</h2>
+
+    <!-- Поля ввода -->
+    <div class="calc-grid">
+        <div class="input-group">
+            <label for="initial">Начальный капитал (₽)</label>
+            <input type="number" id="initial" value="1000000" min="0" max="100000000" step="10000">
+            <div class="limit-note">до 100 млн ₽</div>
+        </div>
+        <div class="input-group">
+            <label for="rate">Годовая доходность (%)</label>
+            <input type="number" id="rate" value="25" min="0" max="50" step="0.1">
+            <div class="limit-note">рекомендуется до 50%</div>
+        </div>
+        <div class="input-group">
+            <label for="years">Срок инвестирования (лет)</label>
+            <input type="number" id="years" value="10" min="1" max="20" step="0.5">
+            <div class="limit-note">максимум 20 лет</div>
+        </div>
+        <div class="input-group">
+            <label for="monthly">Ежемесячное пополнение (₽)</label>
+            <input type="number" id="monthly" value="50000" min="0" max="10000000" step="5000">
+            <div class="limit-note">до 10 млн ₽/мес</div>
+        </div>
+        <div class="input-group">
+            <label for="compound">Капитализация</label>
+            <select id="compound">
+                <option value="12" selected>Ежемесячно</option>
+                <option value="4">Ежеквартально</option>
+                <option value="2">Раз в полгода</option>
+                <option value="1">Ежегодно</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Результаты -->
+    <div class="results">
+        <div class="result-item"><strong id="final">0 ₽</strong><span>Итоговая сумма</span></div>
+        <div class="result-item"><strong id="profit">0 ₽</strong><span>Чистая прибыль</span></div>
+        <div class="result-item"><strong id="totalInvested">0 ₽</strong><span>Внесено всего</span></div>
+        <div class="result-item"><strong id="totalReturn">0%</strong><span>Доходность за период</span></div>
+        <div class="result-item"><strong id="cagr">0%</strong><span>CAGR</span></div>
+    </div>
+
+    <!-- График -->
+    <div class="chart-container">
+        <canvas id="growthChart"></canvas>
+    </div>
+
+</div>
+
+<!-- Футер -->
+    <footer>
+        <p>© 2025 Все права защищены. Информация носит ознакомительный характер и не является индивидуальной инвестиционной рекомендацией(ИИР).</p>
+        <!-- Иконка с анимацией -->
+        <a href="https://t.me/Ryntsk" target="_blank" class="footer-icon-link" title="Автор">
+        <img src="Pics/logo.png" class="footer-icon">
+    </a>
+    </footer>
+
+<script>
+    const ctx = document.getElementById('growthChart').getContext('2d');
+    let chart;
+
+    function calculate() {
+        let P = Math.min(parseFloat(document.getElementById('initial').value) || 0, 100000000);
+        let r = Math.min(parseFloat(document.getElementById('rate').value) / 100 || 0, 0.5);
+        let years = Math.min(parseFloat(document.getElementById('years').value) || 1, 20);
+        let PMT = Math.min(parseFloat(document.getElementById('monthly').value) || 0, 10000000);
+        const n = parseInt(document.getElementById('compound').value);
+
+        const totalMonths = Math.round(years * 12);
+        const totalInvested = P + PMT * totalMonths;
+
+        let finalValue = P * Math.pow(1 + r / n, n * years);
+        if (PMT > 0) {
+            const mr = r / 12;
+            if (r > 0) finalValue += PMT * ((Math.pow(1 + mr, totalMonths) - 1) / mr);
+            else finalValue += PMT * totalMonths;
+        }
+
+        const profit = finalValue - totalInvested;
+        const totalReturn = totalInvested > 0 ? (profit / totalInvested) * 100 : 0;
+        const cagr = P > 0 ? (Math.pow(finalValue / P, 1 / years) - 1) * 100 : 0;
+
+        const fmt = new Intl.NumberFormat('ru-RU', {maximumFractionDigits: 0});
+        document.getElementById('final').textContent = fmt.format(finalValue.toFixed(0)) + ' ₽';
+        document.getElementById('profit').textContent = fmt.format(profit.toFixed(0)) + ' ₽';
+        document.getElementById('totalInvested').textContent = fmt.format(totalInvested) + ' ₽';
+        document.getElementById('totalReturn').textContent = totalReturn.toFixed(1) + '%';
+        document.getElementById('cagr').textContent = cagr.toFixed(2) + '%';
+
+        // график
+        const labels = []; const data = []; const steps = 40;
+        for (let m = 0; m <= totalMonths; m += Math.max(1, Math.floor(totalMonths / steps))) {
+            const t = m / 12;
+            let val = P * Math.pow(1 + r / n, n * t);
+            if (PMT > 0 && m > 0 && r > 0) val += PMT * ((Math.pow(1 + r/12, m) - 1) / (r/12));
+            else if (PMT > 0 && m > 0) val += PMT * m;
+            labels.push(t % 1 === 0 ? `Год ${t}` : `${t.toFixed(1)}`);
+            data.push(Math.round(val));
+        }
+
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {type:'line',data:{labels,datasets:[{label:'Рост капитала',data,borderColor:'#0f9',backgroundColor:'rgba(0,255,150,0.08)',borderWidth:3,pointRadius:4,pointHoverRadius:9,fill:true,tension:0.4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.formattedValue.toLocaleString('ru-RU')} ₽`}}},scales:{y:{ticks:{color:'#888'},grid:{color:'#222'}},x:{ticks:{color:'#888'},grid:{color:'#222'}}}}});
+    }
+
+    document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calculate));
+    window.addEventListener('load', calculate);
+</script>
+
+<script src="script.js"></script>
+
+    <!-- Back to Top Button -->
+<button id="backToTop" title="Наверх">
+    <img src="Pics/bull.png" alt="Наверх">
+</button>
+</body>
+</html>

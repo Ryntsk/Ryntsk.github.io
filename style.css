@@ -1,0 +1,315 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background: #000;
+    color: #fff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.8;
+    
+}
+.translation {
+  font-weight: normal;
+  font-style: italic;
+  color: #666; /* серый цвет, например */
+  font-size: 0.3em;
+}
+#backToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: #0f9;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    padding: 0;
+    overflow: visible;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    
+}
+
+#backToTop img {
+    width: 80%;
+    height: auto;
+    display: block;
+    margin-bottom: 2px;
+
+    
+}
+
+#backToTop:hover {
+    height: 70px;
+    transition: transform 0.3s ease;
+}
+
+#backToTop:hover img {
+    /* Плавно поднимаем изображение при наведении */
+    transform: translateY(-30px);
+}
+
+/* Шапка */
+.fixed-header {
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(10px);
+    /* position: fixed убран */
+    width: 100%;
+}
+
+
+.nav-tiles {
+    display: flex;
+    justify-content: flex-start; /* 'left' не валиден, лучше использовать flex-start */
+    padding: 12px 20px; /* добавил немного отступов для читаемости, можно настроить */
+    flex-wrap: wrap;
+    gap: 24px; /* удобная замена margin для равномерных промежутков */
+}
+
+.tile {
+    color: #aaa;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0; /* убираем внутренние отступы */
+    margin: 0;  /* убираем внешние отступы — gap управляет расстоянием */
+    background: transparent; /* явно указываем прозрачный фон */
+    border: none; /* убираем границу */
+    border-radius: 0; /* убираем скругления */
+    transition: color 0.3s ease; /* анимируем только цвет текста */
+}
+
+.tile:hover {
+    color: #0f9; /* просто меняем цвет текста */
+    background: transparent; /* на всякий случай */
+}
+
+.tile.active {
+    color: #0f9; /* активный элемент — тоже только цвет */
+    background: transparent;
+}
+
+/* Hero */
+#hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(0deg, #000 0%, #001a00 100%);
+    padding: 0px 20px 80px;
+}
+#hero h1 {
+    font-size: 8vw;
+    line-height: 1.01;
+    margin-bottom: 140px;
+    background: linear-gradient(90deg, #0f9, #ff8c00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.asset-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+.asset-buttons a {
+    padding: 20px 40px;
+    font-size: 1.4rem;
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 160px;
+    max-width: 200px; 
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+
+}
+.asset-buttons a:hover {
+    background: #0f9;
+    color: #000;
+    border-color: #0f9;
+    transform: scale(1.08);
+}
+
+/* Обычные секции */
+.asset-section, .sub-section {
+    padding: 140px 15% 100px;
+    min-height: 80vh;
+    
+}
+.content {
+    font-size: 1.2rem; 
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.content h2 {
+    font-size: 5.5rem;
+    margin-bottom: 50px;
+    color: #0f9;
+}
+.content h3 {
+    font-size: 3rem;
+    margin: 50px 0 25px;
+    color: #ff8c00;
+}
+.highlight {
+    margin-top: 50px;
+    padding: 25px;
+    background: rgba(0,255,150,0.1);
+    border-left: 4px solid #0f9;
+    font-size: 1.5rem;
+    color: #0f9;
+    font-weight: bold;
+}
+.sub-section { background: #050505; }
+
+/* Стили для карточек деривативов */
+.derivatives-grid {
+    display: grid;
+    gap: 30px;
+    margin-top: 50px;
+    padding-top: 50px;
+    border-top: 1px solid #222;
+}
+
+@media (min-width: 768px) {
+    .derivatives-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    .derivatives-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.derivative-card {
+    background: rgba(10, 10, 10, 0.6);
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 25px;
+    transition: all 0.3s ease;
+}
+
+
+.derivative-card h3 {
+    font-size: 2.2rem;
+    margin-bottom: 16px;
+    color: #ff8c00;
+}
+
+.derivative-card p {
+    margin-bottom: 12px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+/* Мелкая настройка перевода внутри карточек */
+.derivative-card .translation {
+    font-size: 0.8em;
+    color: #666;
+}
+
+/* Боковая панель */
+.side-nav {
+    position: fixed;
+    text-align: right;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%) translateX(120%); /* Скрыта за правым краем */
+    background: rgba(0,0,0,0);
+    padding: 25px 15px;
+
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 1s ease;
+    z-index: 999;
+}
+
+.side-nav.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0); /* На своём месте */
+}
+
+.side-nav a {
+    display: block;
+    color: #888;
+    text-decoration: none;
+    margin: 20px 0;
+    font-size: 0.8rem;
+    transition: 0.5s;
+}
+
+.side-nav a:hover {
+    color: rgb(255, 255, 255);
+    transform: scale(1.05);
+}
+/* Боковая панель — активный пункт */
+.side-nav a.active {
+    color: rgb(165, 165, 165) !important;           /* яркий зелёный */
+    font-weight: bold;
+    transform: translateX(-5px);      /* ← выдвигается влево на 5 пикселей */
+    transition: all 0.4s ease;
+}
+
+/* Футер — без изменений */
+footer {
+    padding: 80px 20px;
+    text-align: center;
+    color: #555;
+    font-size: 0.9rem;
+    border-top: 1px solid #222;
+    background-color: #111;
+    position: relative;
+}
+
+/* Ссылка-обёртка */
+.footer-icon-link {
+    display: inline-block;
+    margin-top: 20px;
+    /* Добавим плавность для свечения */
+    transition: box-shadow 0.3s ease;
+}
+
+/* Иконка */
+.footer-icon {
+    width: 60px;
+    height: auto;
+    display: block;
+    transition: transform 2s ease; /* ← вращение медленнее: 2 секунды */
+    /* Чтобы свечение не "прыгало" */
+
+    filter: 
+        drop-shadow(0 0 8px rgba(255, 0, 0, 1))
+        drop-shadow(0 0 16px rgba(255, 0, 0, 0.8))
+        drop-shadow(0 0 24px rgba(255, 0, 0, 0.6));
+}
+
+
+.footer-icon-link:hover .footer-icon {
+    /* Добавляем transition ТОЛЬКО при наведении */
+    transition: transform 1.8s ease;
+    transform: rotate(360deg);
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .content h2 { font-size: 3.5rem; }
+    #hero h1 { font-size: 12vw; }
+    .asset-buttons a { padding: 16px 24px; font-size: 1.2rem; }
+    .side-nav { right: 15px; padding: 15px 10px; }
+}

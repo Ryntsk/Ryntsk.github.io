@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Что купить</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon"  href="Pics/triangle.png">
+    
+</head>
+
+<style>
+    /* Стили для рекламного блока */
+.ad-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #ff8c00 0%);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    color: white;
+    text-align: center;
+}
+
+.ad-content {
+    position: relative;
+    padding: 20px;
+}
+
+.ad-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 28px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.ad-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.ad-text h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.ad-text p {
+    font-size: 1.3em;
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+.ad-link {
+    color: #FFD700;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 2px solid #FFD700;
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+}
+
+.ad-link:hover {
+    color: #FFF;
+    border-bottom-color: #FFF;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .ad-container {
+        margin: 20px;
+        padding: 20px;
+    }
+    
+    .ad-text h2 {
+        font-size: 2em;
+    }
+    
+    .ad-text p {
+        font-size: 1.1em;
+    }
+}
+</style>
+<body>
+
+    <header class="fixed-header">
+        <div class="nav-tiles">
+            <a href="index.html" class="tile">Главная</a>
+            <a href="buy.html" class="tile active">Что купить</a>
+            <a href="ex.html" class="tile">Биржи</a>
+            <a href="Analysis.html" class="tile">Анализ</a>
+            <a href="calc.html" class="tile">Калькулятор</a>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Лидеры рынка</h1>
+            <p>Самые обсуждаемые и перспективные акции прямо сейчас</p>
+        </div>
+    </section>
+
+    <!-- Рекламный блок -->
+    <section id="advertisement" class="ad-container">
+        <div class="ad-content">
+            <button class="ad-close" id="closeAd">&times;</button>
+            <div class="ad-text">
+                <h2>Здесь могла бы быть ваша реклама</h2>
+                <p>По вопросам рекламы обращайтесь 
+                    <a href="https://t.me/Ryntsk" target="_blank" class="ad-link">Ryntsk</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Футер -->
+    <footer>
+        <p>© 2025 Все права защищены. Информация носит ознакомительный характер и не является индивидуальной инвестиционной рекомендацией(ИИР).</p>
+        <!-- Иконка с анимацией -->
+        <a href="https://t.me/Ryntsk" target="_blank" class="footer-icon-link" title="Автор">
+        <img src="Pics/logo.png" class="footer-icon">
+    </a>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" title="Наверх">
+        <img src="Pics/bull.png" alt="Наверх">
+    </button>
+
+    <script>
+        // Закрытие рекламного блока
+        document.addEventListener('DOMContentLoaded', function() {
+            const closeButton = document.getElementById('closeAd');
+            const adContainer = document.getElementById('advertisement');
+            
+            if (closeButton && adContainer) {
+                closeButton.addEventListener('click', function() {
+                    adContainer.style.display = 'none';
+                });
+            }
+        });
+    </script>
+    
+</body>
+</html>
