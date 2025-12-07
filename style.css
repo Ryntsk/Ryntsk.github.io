@@ -270,10 +270,10 @@ body {
 footer {
     padding: 80px 20px;
     text-align: center;
-    color: #555;
+    color: #ffffff;
     font-size: 0.9rem;
     border-top: 1px solid #222;
-    background-color: #111;
+    background-color: #000000;
     position: relative;
 }
 
@@ -285,6 +285,7 @@ footer {
     transition: box-shadow 0.3s ease;
 }
 
+.subtitle{text-align:center;font-size:1.7rem;color:#aaa;margin-bottom:130px;font-weight:300;}
 /* Иконка */
 .footer-icon {
     width: 60px;
@@ -293,17 +294,17 @@ footer {
     transition: transform 2s ease; /* ← вращение медленнее: 2 секунды */
     /* Чтобы свечение не "прыгало" */
 
-    filter: 
-        drop-shadow(0 0 8px rgba(255, 0, 0, 1))
-        drop-shadow(0 0 16px rgba(255, 0, 0, 0.8))
-        drop-shadow(0 0 24px rgba(255, 0, 0, 0.6));
+    filter:
+  drop-shadow(0 0 6px rgba(255, 0, 0, 0.6))
+  drop-shadow(0 0 12px rgba(255, 0, 0, 0.4))
+  drop-shadow(0 0 16px rgba(255, 0, 0, 0.3));
 }
 
 
 .footer-icon-link:hover .footer-icon {
     /* Добавляем transition ТОЛЬКО при наведении */
     transition: transform 1.8s ease;
-    transform: rotate(360deg);
+    transform: rotate(540deg);
 }
 
 /* Адаптив */
