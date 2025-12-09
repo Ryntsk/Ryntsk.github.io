@@ -5,81 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Анализ активов — глубокий гид</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon"  href="Pics/triangle.png">
+    <link rel="icon" href="Pics/triangle.png">
     <style>
-        body{background:#000;color:#ddd;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.8}
-        .container{max-width:860px;margin:0 auto;padding:0 20px;}
-        h1{font-size:5.8rem;font-weight:800;text-align:center;margin:100px 0 20px;background:linear-gradient(90deg,#0f9,#0ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-        
-        .article-body{font-size:1.35rem;color:#ffffff;}
-        .article-body p{margin-bottom:1.7em;}
-        hr{border:none;height:1px;background:linear-gradient(to right,transparent,#333 20%,#333 80%,transparent);margin:90px 0;}
-        .numbered{counter-reset:section;margin:100px 0;}
-        .numbered > div{counter-increment:section;margin-bottom:120px;}
-        .numbered h2{font-size:3.1rem;font-weight:700;color:#fff;margin-bottom:40px;position:relative;padding-left:4px;}
-        .numbered h2::before{content:counter(section) ". ";color:#0f9;font-weight:800;font-size:1.1em;}
-        .highlight{color:#0f9;font-weight:600;}
-        .tip{background:rgba(0,255,150,0.06);border-left:4px solid #0f9;padding:22px 28px;border-radius:0 12px 12px 0;margin:40px 0;font-size:1.15rem;line-height:1.7;}
-        ul{margin:32px 0 32px 36px;line-height:1.9;}
-        li{margin-bottom:12px;}
-        @media(max-width:768px){
-            h1{font-size:4.3rem;} .subtitle{font-size:1.45rem;}
-            .article-body{font-size:1.25rem;} .numbered h2{font-size:2.6rem;}
-        }
-
-        /* Стили для модального окна */
-        .modal-backdrop {
-            display: none; /* Скрыто по умолчанию */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
-            z-index: 1000; /* Высокий z-index, чтобы поверх всего */
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: #1a1a1a; /* Темный фон для окна */
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            text-align: center;
-            max-width: 90%;
-            width: 400px; /* Можно изменить */
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 24px;
-            cursor: pointer;
-            color: #aaa; /* Цвет крестика */
-        }
-
-        .modal-close:hover {
-            color: #fff; /* Цвет крестика при наведении */
-        }
-
-        .modal-text {
-            margin-bottom: 20px; /* Отступ между текстом и ссылкой */
-            font-size: 1.2rem;
+        body {
+            background: #000;
             color: #ddd;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.8;
+            margin: 0;
         }
-
-        .modal-link {
-            color: #0f9; /* Цвет ссылки */
-            text-decoration: none;
-            font-weight: bold;
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-
-        .modal-link:hover {
-            text-decoration: underline;
-        }
+        
     </style>
 </head>
 <body>
@@ -94,10 +34,14 @@
     </div>
 </header>
 
-<div class="container">
-    <h1>Анализ активов</h1>
-    <p class="subtitle">Глубокое понимание каждого класса активов: от базовых определений до работающих стратегий</p>
+<section id="hero">
+    <div class="hero-content">
+        <h1>Анализ активов</h1>
+        <p class="subtitle">Глубокое понимание каждого класса активов: от базовых определений до работающих стратегий</p>
+    </div>
+</section>
 
+<div class="container">
     <div class="article-body">
         <div class="numbered">
 
@@ -182,7 +126,7 @@
                     <li>Процикличные (risk-on): AUD, NZD, CAD, NOK, ZAR — растут в рисковые времена</li>
                     <li>Защитные (risk-off): USD, CHF, JPY — укрепляются в кризис</li>
                 </ul>
-                <div class="tip">Самый опасный момент в кэрри-трейде — не процент, а резкое укрепление валюты-финансирования (как иена в 2008 и 2022).</div>
+                <div class="tip">Самый опасный момент в кэрри-трейде — не процент, а резкое укрепление валюты-финансирования (как иена в 2008 и 2024).</div>
             </div>
 
         </div>
@@ -190,13 +134,13 @@
 </div>
 
 <footer>
-        <p>© 2025 АО «Ryntsk». Все права защищены. Информация носит ознакомительный характер и не является индивидуальной инвестиционной рекомендацией (ИИР).</p>
-        <a href="https://t.me/Ryntsk  " target="_blank" class="footer-icon-link" title="Автор">
-            <img src="Pics/logo.png" class="footer-icon" alt="Автор">
-        </a>
-    </footer>
+    <p>© 2025 АО «Ryntsk». Все права защищены. Информация носит ознакомительный характер и не является индивидуальной инвестиционной рекомендацией (ИИР).</p>
+    <a href="https://t.me/Ryntsk" target="_blank" class="footer-icon-link" title="Автор">
+        <img src="Pics/logo.png" class="footer-icon" alt="Автор">
+    </a>
+</footer>
 
-<!-- Back to Top Button -->
+<!-- Кнопка наверх -->
 <button id="backToTop" title="Наверх">
     <img src="Pics/bull.png" alt="Наверх">
 </button>
@@ -204,44 +148,13 @@
 <!-- Модальное окно рекламы -->
 <div id="adModal" class="modal-backdrop">
     <div class="modal-content">
-        <span class="modal-close">&times;</span>
+        <span class="modal-close">×</span>
         <div class="modal-text">Здесь могла бы быть ваша реклама</div>
         <a href="https://t.me/Ryntsk" target="_blank" class="modal-link">по вопросам рекламы</a>
     </div>
 </div>
 
 <script src="script.js"></script>
-<script>
-    // Получаем элемент модального окна
-    const modal = document.getElementById('adModal');
-
-    // Функция для проверки прокрутки
-    function checkScroll() {
-        // Проверяем, прокрутил ли пользователь страницу на 20% высоты окна (можно изменить)
-        if (window.scrollY > window.innerHeight * 0.2) {
-            modal.style.display = 'flex'; // Показываем модальное окно
-            window.removeEventListener('scroll', checkScroll); // Убираем слушатель, чтобы не срабатывало повторно
-        }
-    }
-
-    // Добавляем слушатель события прокрутки
-    window.addEventListener('scroll', checkScroll);
-
-    // Получаем элемент крестика для закрытия
-    const closeBtn = document.querySelector('.modal-close');
-
-    // Добавляем обработчик клика на крестик
-    closeBtn.addEventListener('click', function() {
-        modal.style.display = 'none'; // Скрываем модальное окно
-    });
-
-    // (Опционально) Закрытие при клике на фон вне окна
-    modal.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
-</script>
 
 </body>
 </html>
