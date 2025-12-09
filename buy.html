@@ -6,209 +6,161 @@
     <title>Что купить</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="Pics/triangle.png">
-
     <style>
-    #tv-ticker {
-        position: sticky;
-        top: 0; /* Будет закреплен сразу под header */
-        z-index: 100; /* Чтобы был поверх остального контента */
-        background: #111; /* Темный фон для ticker tape */
-    }
-        h3 {
-  text-align: center;
-}
+        body {
+            background: #000;
+            color: #ddd;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        #tv-ticker {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #111;
+        }
+
+        @media (max-width: 768px) {
+            .derivative-card { padding: 20px; }
+            .derivative-card h3 { font-size: 1.45rem; }
+        }
     </style>
 </head>
-
 <body>
-    <header class="fixed-header">
-        <div class="nav-tiles">
-            <a href="index.html" class="tile">Главная</a>
-            <a href="buy.html" class="tile active">Что купить</a>
-            <a href="ex.html" class="tile">Биржи</a>
-            <a href="Analysis.html" class="tile">Анализ</a>
-            <a href="calc.html" class="tile">Калькулятор</a>
-        </div>
-    </header>
 
+<header class="fixed-header">
+    <div class="nav-tiles">
+        <a href="index.html" class="tile">Главная</a>
+        <a href="buy.html" class="tile active">Что купить</a>
+        <a href="ex.html" class="tile">Биржи</a>
+        <a href="Analysis.html" class="tile">Анализ</a>
+        <a href="calc.html" class="tile">Калькулятор</a>
+    </div>
+</header>
+
+<!-- TradingView Ticker Tape -->
+<div id="tv-ticker"></div>
     
 
-<div id="tv-ticker"></div>
-<script>
-  // === Единый список активов ===
-  const symbols = [
-    { proName: "NASDAQ:MSFT", title: "Microsoft" },
-    { proName: "NASDAQ:GOOGL", title: "Alphabet" },
-    { proName: "NASDAQ:NVDA", title: "NVIDIA" },
-    { proName: "US10Y", title: "US 10Y Yield" },
-    { proName: "US05Y", title: "US 5Y Yield" },
-    { proName: "AMEX:SPY", title: "S&P 500 ETF" },
-    { proName: "NASDAQ:QQQ", title: "QQQ Trust" },
-    { proName: "Gold", title: "Gold" },        
-    { proName: "UKOIL", title: "Brent Oil" },
-    { proName: "NGAS", title: "Natural Gas" },
-    { proName: "FX_IDC:EURUSD", title: "EUR/USD" } 
-  ];
-
-  // Общая конфигурация
-  const baseConfig = {
-    showSymbolLogo: false,
-    colorTheme: "dark",
-    isTransparent: true,
-    displayMode: "adaptive",
-    locale: "ru"
-  };
-
-  // Загрузка виджета
-  function loadTicker() {
-    const tickerContainer = document.getElementById("tv-ticker");
-    if (!tickerContainer) return;
-
-    tickerContainer.innerHTML = '';
-
-    const script = document.createElement("script");
-    script.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"; // ← убраны пробелы!
-    script.type = "text/javascript";
-    script.async = true;
-    script.innerHTML = JSON.stringify({ ...baseConfig, symbols });
-    tickerContainer.appendChild(script);
-  }
-
-  // Запуск после загрузки DOM
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", loadTicker);
-  } else {
-    loadTicker();
-  }
-</script>
-
-    <section id="hero">
-        <div class="hero-content">
-            <h1>Лидеры рынка</h1>
-            <p class="subtitle">Самые обсуждаемые и перспективные акции прямо сейчас</p>
-        </div>
-    </section>
-
-    <section class="asset-section">
-  <div class="content">
-    <h2>Анализ активов</h2>
-    <p >Подборка ключевых активов с фокусом на фундаментальные драйверы, риски и инвестиционную логику.</p>
-    <div class="derivatives-grid">
-      <!-- Microsoft -->
-      <div class="derivative-card">
-        <h3>Microsoft (MSFT)</h3>
-        <p><strong>Суть:</strong> Не просто акция, а экосистема, ставшая цифровым фундаментом для бизнеса. Сочетает агрессивный рост (облака, ИИ) со стабильностью «голубой фишки».</p>
-        <p><strong>Драйверы:</strong> Монетизация ИИ (Copilot, OpenAI в Azure и Office), повторяющиеся доходы (SaaS), финансовая мощь (AAA рейтинг, cash flow).</p>
-        <p><strong>Риски:</strong> Высокая оценка, регуляторное давление, цикличность корпоративных ИТ-расходов.</p>
-        <p><strong>Для кого:</strong> Для инвестора, ищущего «безопасный» рост в технологиях с дивидендной подушкой и ставкой на мейнстримные тренды.</p>
-      </div>
-
-      <!-- Alphabet -->
-      <div class="derivative-card">
-        <h3>Alphabet (GOOGL)</h3>
-        <p><strong>Суть:</strong> Доминирование в цифровой рекламе (Google Search, YouTube) и растущее влияние в облаках и ИИ.</p>
-        <p><strong>Драйверы:</strong> Рекламный денежный поток, рост Google Cloud, лидерство в данных для ИИ.</p>
-        <p><strong>Риски:</strong> Зависимость от рекламного цикла, антимонопольные иски, конкуренция в ИИ.</p>
-        <p><strong>Для кого:</strong> Для инвестора, делающего ставку на долгосрочное доминирование в цифровой экономике.</p>
-      </div>
-
-      <!-- NVIDIA -->
-      <div class="derivative-card">
-        <h3>NVIDIA (NVDA)</h3>
-        <p><strong>Суть:</strong> «Кирка и лопата» эпохи ИИ — монополист на рынке GPU для ИИ и дата-центров.</p>
-        <p><strong>Драйверы:</strong> Взрывной спрос на ИИ-чипы, переход к ускоренным вычислениям, расширение ПО-экосистемы.</p>
-        <p><strong>Риски:</strong> Цикличность полупроводников, растущая конкуренция, высокая волатильность и переоценка.</p>
-        <p><strong>Для кого:</strong> Для агрессивного инвестора, готового к рискам ради доходности от ИИ-инфраструктуры.</p>
-      </div>
-
-      <!-- US 10Y Yield -->
-      <div class="derivative-card">
-        <h3>US 10Y Yield</h3>
-        <p><strong>Суть:</strong> Ключевая мировая безрисковая ставка — барометр экономических ожиданий.</p>
-        <p><strong>Драйверы:</strong> Ставки ФРС, инфляция, GDP, спрос на госдолг.</p>
-        <p><strong>Риски:</strong> Падение цен облигаций при росте доходности.</p>
-        <p><strong>Для кого:</strong> Для всех — как макроиндикатор; для консерваторов — как защита (при покупке облигаций).</p>
-      </div>
-
-      <!-- US 5Y Yield -->
-      <div class="derivative-card">
-        <h3>US 5Y Yield</h3>
-        <p><strong>Суть:</strong> Отражение ожиданий по ставкам ФРС на среднесрочную перспективу.</p>
-        <p><strong>Драйверы:</strong> Траектория ключевой ставки, краткосрочная инфляция.</p>
-        <p><strong>Риски:</strong> Высокая чувствительность к новостям от ФРС.</p>
-        <p><strong>Для кого:</strong> Для тех, кто делает ставку на конкретный сценарий ФРС и инфляции.</p>
-      </div>
-
-      <!-- S&P 500 ETF (SPY) -->
-      <div class="derivative-card">
-        <h3>S&P 500 ETF (SPY)</h3>
-        <p><strong>Суть:</strong> «Весь американский рынок» — 500 крупнейших компаний США.</p>
-        <p><strong>Драйверы:</strong> Рост экономики и прибылей корпораций.</p>
-        <p><strong>Риски:</strong> Системный рыночный риск, перекос в tech-сектор.</p>
-        <p><strong>Для кого:</strong> Для любого инвестора — базовая диверсифицированная корзина на долгосрок.</p>
-      </div>
-
-      <!-- QQQ Trust -->
-      <div class="derivative-card">
-        <h3>QQQ Trust</h3>
-        <p><strong>Суть:</strong> Ставка на Nasdaq-100 — технологическое лидерство США.</p>
-        <p><strong>Драйверы:</strong> Рост инновационных секторов (ИИ, облака).</p>
-        <p><strong>Риски:</strong> Высокая волатильность, концентрация в нескольких гигантах.</p>
-        <p><strong>Для кого:</strong> Для тех, кто хочет большей экспозиции к tech, чем даёт SPY.</p>
-      </div>
-
-      <!-- Gold -->
-      <div class="derivative-card">
-        <h3>Gold</h3>
-        <p><strong>Суть:</strong> Актив-убежище, не генерирующий доход, но сохраняющий ценность.</p>
-        <p><strong>Драйверы:</strong> Падение реальных ставок, геополитика, ослабление доллара.</p>
-        <p><strong>Риски:</strong> Нет купонов/дивидендов, длительные боковики.</p>
-        <p><strong>Для кого:</strong> Для консерваторов — как страховка портфеля от макрорисков.</p>
-      </div>
-
-      <!-- Brent Oil -->
-      <div class="derivative-card">
-        <h3>Brent Oil</h3>
-        <p><strong>Суть:</strong> Кровь глобальной экономики — цена на балансе спроса и предложения.</p>
-        <p><strong>Драйверы:</strong> Рост экономики, OPEC+, геополитика.</p>
-        <p><strong>Риски:</strong> Волатильность, политические риски, переход на «зелёную» энергетику.</p>
-        <p><strong>Для кого:</strong> Для тактических игроков и спекулянтов на макроциклах.</p>
-      </div>
-
-      <!-- Natural Gas -->
-      <div class="derivative-card">
-        <h3>Natural Gas</h3>
-        <p><strong>Суть:</strong> Энергия переходного периода — зависит от погоды и промышленности.</p>
-        <p><strong>Драйверы:</strong> Температурные аномалии, европейский спрос, замещение угля.</p>
-        <p><strong>Риски:</strong> Экстремальная волатильность, зависимость от логистики и погоды.</p>
-        <p><strong>Для кого:</strong> Для опытных спекулянтов, торгующих сезонность и аномалии.</p>
-      </div>
-
-      <!-- EUR/USD -->
-      <div class="derivative-card">
-        <h3>EUR/USD</h3>
-        <p><strong>Суть:</strong> Главная валютная пара — зеркало относительной силы США и Европы.</p>
-        <p><strong>Драйверы:</strong> Разница ставок ФРС/ЕЦБ, макроданные, геополитика в Европе.</p>
-        <p><strong>Риски:</strong> Валютный риск, непредсказуемость политических событий.</p>
-        <p><strong>Для кого:</strong> Для хеджирования международных позиций или макроспекуляций.</p>
-      </div>
+<section id="hero">
+    <div class="hero-content">
+        <h1>Лидеры рынка</h1>
+        <p class="subtitle">Самые обсуждаемые и перспективные активы прямо сейчас</p>
     </div>
-  </div>
 </section>
 
+<section class="asset-section">
+    <div class="content">
+        <h2>Анализ активов</h2>
+        <p>Подборка ключевых активов с фокусом на фундаментальные драйверы, риски и инвестиционную логику.</p>
 
-    <footer>
-        <p>© 2025 АО «Ryntsk». Все права защищены. Информация носит ознакомительный характер и не является индивидуальной инвестиционной рекомендацией (ИИР).</p>
-        <a href="https://t.me/Ryntsk" target="_blank" class="footer-icon-link" title="Автор">
-            <img src="Pics/logo.png" class="footer-icon" alt="Автор">
-        </a>
-    </footer>
+        <div class="derivatives-grid">
 
-    <!-- Кнопка наверх -->
-    <button id="backToTop" title="Наверх">
-        <img src="Pics/bull.png" alt="Наверх">
-    </button>
+            <div class="derivative-card">
+                <h3>Microsoft (MSFT)</h3>
+                <p><strong>Суть:</strong> Не просто акция, а экосистема, ставшая цифровым фундаментом для бизнеса. Сочетает агрессивный рост (облака, ИИ) со стабильностью «голубой фишки».</p>
+                <p><strong>Драйверы:</strong> Монетизация ИИ (Copilot, OpenAI в Azure и Office), повторяющиеся доходы (SaaS), финансовая мощь (AAA рейтинг, cash flow).</p>
+                <p><strong>Риски:</strong> Высокая оценка, регуляторное давление, цикличность корпоративных ИТ-расходов.</p>
+                <p><strong>Для кого:</strong> Для инвестора, ищущего «безопасный» рост в технологиях с дивидендной подушкой и ставкой на мейнстримные тренды.</p>
+            </div>
 
-    <script src="script.js"></script>
+            <div class="derivative-card">
+                <h3>Alphabet (GOOGL)</h3>
+                <p><strong>Суть:</strong> Доминирование в цифровой рекламе (Google Search, YouTube) и растущее влияние в облаках и ИИ.</p>
+                <p><strong>Драйверы:</strong> Рекламный денежный поток, рост Google Cloud, лидерство в данных для ИИ.</p>
+                <p><strong>Риски:</strong> Зависимость от рекламного цикла, антимонопольные иски, конкуренция в ИИ.</p>
+                <p><strong>Для кого:</strong> Для инвестора, делающего ставку на долгосрочное доминирование в цифровой экономике.</p>
+            </div>
+
+            <div class="derivative-card">
+                <h3>NVIDIA (NVDA)</h3>
+                <p><strong>Суть:</strong> «Кирка и лопата» эпохи ИИ — монополист на рынке GPU для ИИ и дата-центров.</p>
+                <p><strong>Драйверы:</strong> Взрывной спрос на ИИ-чипы, переход к ускоренным вычислениям, расширение ПО-экосистемы.</p>
+                <p><strong>Риски:</strong> Цикличность полупроводников, растущая конкуренция, высокая волатильность и переоценка.</p>
+                <p><strong>Для кого:</strong> Для агрессивного инвестора, готового к рискам ради доходности от ИИ-инфраструктуры.</p>
+            </div>
+
+            <div class="derivative-card">
+                <h3>US 10Y Yield</h3>
+                <p><strong>Суть:</strong> Ключевая мировая безрисковая ставка — барометр экономических ожиданий.</p>
+                <p><strong>Драйверы:</strong> Ставки ФРС, инфляция, GDP, спрос на госдолг.</p>
+                <p><strong>Риски:</strong> Падение цен облигаций при росте доходности.</p>
+                <p><strong>Для кого:</strong> Для всех — как макроиндикатор; для консерваторов — как защита.</p>
+            </div>
+
+            <div class="derivative-card">
+                <h3>US 5Y Yield</h3>
+                <p><strong>Суть:</strong> Отражение ожиданий по ставкам ФРС на среднесрочную перспективу.</p>
+                <p><strong>Драйверы:</strong> Траектория ключевой ставки, краткосрочная инфляция.</p>
+                <p><strong>Риски:</strong> Высокая чувствительность к новостям от ФРС.</p>
+                <p><strong>Для кого:</strong> Для тех, кто делает ставку на конкретный сценарий ФРС и инфляции.</p>
+            </div>
+
+            <div class="derivative-card">
+                <h3>S&P 500 ETF (SPY)</h3>
+                <p><strong>Суть:</strong> «Весь американский рынок» — 500 крупнейших компаний США.</p>
+                <p><strong>Драйверы:</strong> Рост экономики и прибылей корпораций.</p>
+                <p><strong>Риски:</strong> Системный рыночный риск, перекос в tech-сектор.</p>
+                <p><strong>Для кого:</strong> Для любого инвестора — базовая диверсифицированная корзина на долгосрок.</p>
+            </div>
+
+            <div class="derivative-card">
+                <h3>QQQ Trust</h3>
+                <p><strong>Суть:</strong> Ставка на Nasdaq-100 — технологическое лидерство США.</p>
+                <p><strong>Драйверы:</strong> Рост инновационных секторов (ИИ, облака).</p>
+                <p><strong>Риски:</strong> Высокая волатильность, концентрация в нескольких гигантах.</p>
+                <p><strong>Для кого:</strong> Для тех, кто хочет большей экспозиции к tech, чем даёт SPY.</p>
+            </div>
+
+            <div class="derivative-card">
+                <h3>Gold</h3>
+                <p><strong>Суть:</strong> Актив-убежище, не генерирующий доход, но сохраняющий ценность.</p>
+                <p><strong>Драйверы:</strong> Падение реальных ставок, геополитика, ослабление доллара.</p>
+                <p><strong>Риски:</strong> Нет купонов/дивидендов, длительные боковики.</p>
+                <p><strong>Для кого:</strong> Для консерваторов — как страховка портфеля от макрорисков.</p>
+            </div>
+
+            <div class="derivative-card">
+                <h3>Brent Oil</h3>
+                <p><strong>Суть:</strong> Кровь глобальной экономики — цена на балансе спроса и предложения.</p>
+                <p><strong>Драйверы:</strong> Рост экономики, OPEC+, геополитика.</p>
+                <p><strong>Риски:</strong> Волатильность, политические риски, переход на «зелёную» энергетику.</p>
+                <p><strong>Для кого:</strong> Для тактических игроков и спекулянтов на макроциклах.</p>
+            </div>
+
+            <div class="derivative-card">
+                <h3>Natural Gas</h3>
+                <p><strong>Суть:</strong> Энергия переходного периода — зависит от погоды и промышленности.</p>
+                <p><strong>Драйверы:</strong> Температурные аномалии, европейский спрос, замещение угля.</p>
+                <p><strong>Риски:</strong> Экстремальная волатильность, зависимость от логистики и погоды.</p>
+                <p><strong>Для кого:</strong> Для опытных спекулянтов, торгующих сезонность и аномалии.</p>
+            </div>
+
+            <div class="derivative-card">
+                <h3>EUR/USD</h3>
+                <p><strong>Суть:</strong> Главная валютная пара — зеркало относительной силы США и Европы.</p>
+                <p><strong>Драйверы:</strong> Разница ставок ФРС/ЕЦБ, макроданные, геополитика в Европе.</p>
+                <p><strong>Риски:</strong> Валютный риск, непредсказуемость политических событий.</p>
+                <p><strong>Для кого:</strong> Для хеджирования международных позиций или макроспекуляций.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2025 АО «Ryntsk». Все права защищены. Информация носит ознакомительный характер и не является индивидуальной инвестиционной рекомендацией (ИИР).</p>
+    <a href="https://t.me/Ryntsk" target="_blank" class="footer-icon-link" title="Автор">
+        <img src="Pics/logo.png" class="footer-icon" alt="Автор">
+    </a>
+</footer>
+
+<button id="backToTop" title="Наверх">
+    <img src="Pics/bull.png" alt="Наверх">
+</button>
+
+<script src="buy.js"></script>
 </body>
 </html>
