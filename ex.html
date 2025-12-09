@@ -5,53 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Биржи</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon"  href="Pics/triangle.png">
+    <link rel="icon" href="Pics/triangle.png">
     <style>
         .fixed-header {
-        position: fixed;
-        background: rgba(0,0,0,0.95);
-        backdrop-filter: blur(10px);
-        width: 100%;
-        z-index: 100;
-    }
-    
-    .section-title { 
-        text-align: center; 
-        font-size: 2.5rem; 
-        margin-bottom: 25px; /* Уменьшил с 40px */
-        color: #0f9; 
-    }
-    
-    .exchanges-zone { 
-        padding: 0px 15% 40px; /* Уменьшил верхний отступ с 50px */
-        min-height: auto; /* Убрал фиксированную высоту */
-    }
-    
-    .zone-header { 
-        font-size: 1.8rem; 
-        margin-bottom: 15px; /* Уменьшил с 20px */
-        color: #ff8c00; 
-        border-bottom: 2px solid #222; 
-        padding-bottom: 8px; /* Уменьшил с 10px */
-    }
-        .active-zone { background: #000; }
-        .sleeping-zone { background: #050505; }
-        .exchanges-grid { display: grid; gap: 30px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); margin-top: 20px; }
-        .exchange-card { background: rgba(255,255,255); border: 1px solid #222; border-radius: 12px; padding: 10px; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; height: 100%; }
-        .exchange-card:hover { transform: scale(1.05); border-color: #0f9; }
-        .logo-container { width: 100%; height: 120px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; overflow: hidden; }
-        .logo-container img { max-width: 80%; max-height: 80%; object-fit: contain; transition: transform 0.3s ease; }
-        .exchange-card:hover .logo-container img { transform: scale(1.1); }
-        .timer { font-size: 1.1rem; font-weight: bold; color: #ff8c00; text-align: center; margin-top: 10px; padding: 8px; background: rgba(255,140,0,0.1); border-radius: 6px; border: 1px solid #ff8c00; width: 90%; }
-        .fixed-header .header-content { display: flex; justify-content: space-between; align-items: center; height: 100%; gap: 24px; max-width: 1600px; margin: 0 auto; }
-        .time-display { display: flex; gap: 5px; }
-        .time-box { padding: 0 5px; background: rgba(0,0,0,0.1); border-radius: 8px; font-weight: bold; color: #fff; font-size: 0.9rem; text-align: center; }
-        .time-box span { display: block; font-size: 0.75rem; color: #888; }
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); }
-        .modal-content { background-color: #000; margin: 5% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 10px; color: #fff; }
-        .close { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
-        .close:hover { color: #fff; }
-        @media (max-width: 768px) { .exchanges-zone { padding: 40px 5%; } .exchanges-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); } .logo-container { height: 100px; } }
+            position: fixed;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            z-index: 100;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: #0f9;
+        }
+
+        
+        @media (max-width: 768px) {
+            .exchanges-zone { padding: 40px 5%; }
+            .exchanges-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+            .logo-container { height: 100px; }
+        }
     </style>
 </head>
 <body>
@@ -71,7 +47,12 @@
         </div>
     </header>
 
-    <section id="hero"><div class="hero-content"><h1>Ведущие<br>биржи мира</h1></div></section>
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Ведущие<br>биржи мира</h1>
+            <p class="subtitle">Финансовый пантеон</p>
+        </div>
+    </section>
 
     <section id="active-zone" class="exchanges-zone active-zone">
         <div class="content">
@@ -101,273 +82,6 @@
         </a>
     </footer>
 
-    <script>
-    const exchanges = [
-        {
-            name: "Eurex",
-            logo: "Pics/Eurex-Logo.png",
-            open: 1, close: 22, tz: 1,
-            background: "eurex_bg.jpg",
-            modal: {
-                title: "Eurex",
-                link: "https://www.eurex.com",
-                content: `
-                    <p><strong>Местоположение:</strong> Франкфурт-на-Майне / Цюрих</p>
-                    <p><strong>Основана:</strong> 1998 год — первая полностью электронная биржа деривативов в Европе</p>
-                    <p><strong>Оборот:</strong> Крупнейшая в мире площадка по торговле фьючерсами и опционами на европейские активы</p>
-                    <p><strong>Чем торгует:</strong> Фьючерсы и опционы на индексы (EURO STOXX 50), акции, облигации, волатильность, погодные деривативы</p>
-                    <p><strong>Ключевые особенности:</strong> Высочайшая ликвидность, надёжность, хаб для хеджирования европейских рисков</p>
-                    <p style="margin-top:20px"><a href="https://www.eurex.com" target="_blank" style="color:#0f9; font-weight:bold;">eurex.com →</a></p>
-                `
-            }
-        },
-        {
-            name: "ICE",
-            logo: "Pics/ICE.png",
-            open: 8, close: 16.5, tz: -5,
-            background: "ice_bg.jpg",
-            modal: {
-                title: "ICE – Intercontinental Exchange",
-                link: "https://www.theice.com",
-                content: `
-                    <p><strong>Местоположение:</strong> Атланта, США (глобальная сеть)</p>
-                    <p><strong>Основана:</strong> 2000 год как электронная платформа энергетических фьючерсов</p>
-                    <p><strong>Оборот:</strong> Один из крупнейших операторов товарных и финансовых рынков мира</p>
-                    <p><strong>Чем торгует:</strong> Нефть Brent, газ, электроэнергия, сельхозтовары, NYSE (акции), индексные деривативы</p>
-                    <p><strong>Ключевые особенности:</strong> Владелец NYSE, эталонный контракт Brent, вертикальная интеграция</p>
-                    <p style="margin-top:20px"><a href="https://www.theice.com" target="_blank" style="color:#0f9; font-weight:bold;">theice.com →</a></p>
-                `
-            }
-        },
-        {
-            name: "LME",
-            logo: "Pics/London_Metal_Exchange_logo.svg.png",
-            open: 1, close: 19, tz: 0,
-            background: "lme_bg.jpg",
-            modal: {
-                title: "London Metal Exchange (LME)",
-                link: "https://www.lme.com",
-                content: `
-                    <p><strong>Местоположение:</strong> Лондон, Великобритания</p>
-                    <p><strong>Основана:</strong> 1877 год</p>
-                    <p><strong>Оборот:</strong> Глобальный эталон ценообразования на цветные металлы</p>
-                    <p><strong>Чем торгует:</strong> Медь, алюминий, никель, цинк, олово, свинец, литий, кобальт, сталь</p>
-                    <p><strong>Ключевые особенности:</strong> Уникальное «кольцо» + электронная торговля, физическая поставка, складов по миру</p>
-                    <p style="margin-top:20px"><a href="https://www.lme.com" target="_blank" style="color:#0f9; font-weight:bold;">lme.com →</a></p>
-                `
-            }
-        },
-        {
-            name: "MOEX",
-            logo: "Pics/MOEX.png",
-            open: 7, close: 18.666, tz: 3,
-            background: "moex_bg.jpg",
-            modal: {
-                title: "Московская биржа (MOEX)",
-                link: "https://www.moex.com",
-                content: `
-                    <p><strong>Местоположение:</strong> Москва, Россия</p>
-                    <p><strong>Основана:</strong> 2011 год (слияние ММВБ и РТС)</p>
-                    <p><strong>Оборот:</strong> Крупнейшая универсальная площадка России и Восточной Европы</p>
-                    <p><strong>Чем торгует:</strong> Акции, облигации, валюта, дериватives, драгметаллы, зерно</p>
-                    <p><strong>Ключевые особенности:</strong> Единственная универсальная биржа в РФ, высокая ликвидность рублёвых активов</p>
-                    <p style="margin-top:20px"><a href="https://www.moex.com" target="_blank" style="color:#0f9; font-weight:bold;">moex.com →</a></p>
-                `
-            }
-        },
-        {
-    name: "NASDAQ",
-    logo: "Pics/NASDAQ_Logo.svg.png",
-    open: 14.5, close: 21, tz: -5,
-    background: "Pics/NASDAQ_Logo.svg.png",     
-    modal: {
-        title: "NASDAQ",
-        link: "https://www.nasdaq.com",
-        
-        content: `
-            <p><strong>Местоположение:</strong> Нью-Йорк, США — полностью электронная биржа</p>
-            <p><strong>Основана:</strong> 1971 год — первая в мире электронная фондовая биржа</p>
-            <p><strong>Оборот:</strong> ≈ $25 трлн рыночной капитализации (2-е место в мире)</p>
-            <p><strong>Чем торгует:</strong> Технологические гиганты (Apple, Microsoft, Amazon, Tesla), ETF, опционы, крипто-активы</p>
-            <p><strong>Ключевые особенности:</strong> Символ инноваций, лидер по IPO tech-компаний, индексы NASDAQ-100 и Composite</p>
-            <p style="margin-top:20px"><a href="https://www.nasdaq.com" target="_blank" style="color:#0f9; font-weight:bold;">nasdaq.com →</a></p>
-        `
-    }
-},
-        {
-            name: "NYSE",
-            logo: "Pics/NYSE.png",
-            open: 14.5, close: 21, tz: -5,
-            background: "nyse_bg.jpg",
-            modal: {
-                title: "NYSE – New York Stock Exchange",
-                link: "https://www.nyse.com",
-                content: `
-                    <p><strong>Местоположение:</strong> Уолл-стрит, Нью-Йорк</p>
-                    <p><strong>Основана:</strong> 1792 год («Соглашение под платаном»)</p>
-                    <p><strong>Оборот:</strong> ≈ $30 трлн — крупнейшая биржа мира по капитализации</p>
-                    <p><strong>Чем торгует:</strong> «Голубые фишки» (Coca-Cola, Walmart, JPMorgan), ETF, облигации</p>
-                    <p><strong>Ключевые особенности:</strong> Престиж, гибридная модель, индекс Dow Jones</p>
-                    <p style="margin-top:20px"><a href="https://www.nyse.com" target="_blank" style="color:#0f9; font-weight:bold;">nyse.com →</a></p>
-                `
-            }
-        },
-        {
-            name: "SSE",
-            logo: "Pics/Shanghai_Stock_Exchange_logo.svg.png",
-            open: 1.5, close: 7, tz: 8,
-            background: "sse_bg.jpg",
-            modal: {
-                title: "Shanghai Stock Exchange (SSE)",
-                link: "https://english.sse.com.cn",
-                content: `
-                    <p><strong>Местоположение:</strong> Шанхай, Китай</p>
-                    <p><strong>Основана:</strong> 1990 год</p>
-                    <p><strong>Оборот:</strong> Одна из крупнейших бирж Азии</p>
-                    <p><strong>Чем торгует:</strong> A-shares, B-shares, облигации, фонды</p>
-                    <p><strong>Ключевые особенности:</strong> Главный канал иностранных инвестиций в Китай через Stock Connect, индекс SSE Composite</p>
-                    <p style="margin-top:20px"><a href="https://english.sse.com.cn" target="_blank" style="color:#0f9; font-weight:bold;">sse.com.cn →</a></p>
-                `
-            }
-        },
-        {
-            name: "JPX",
-            logo: "Pics/Japan_Exchange_Group_logo.svg.png",
-            open: 0, close: 6.416, tz: 9,
-            background: "jpx_bg.jpg",
-            modal: {
-                title: "Japan Exchange Group (JPX / Токийская биржа)",
-                link: "https://www.jpx.co.jp/english/",
-                content: `
-                    <p><strong>Местоположение:</strong> Токио, Япония</p>
-                    <p><strong>Основана:</strong> 1878 год (современная форма — 2013)</p>
-                    <p><strong>Оборот:</strong> Третья по величине биржа мира</p>
-                    <p><strong>Чем торгует:</strong> Акции, ETF, фьючерсы на Nikkei 225, TOPIX</p>
-                    <p><strong>Ключевые особенности:</strong> Индекс Nikkei 225 — главный барометр японской экономики</p>
-                    <p style="margin-top:20px"><a href="https://www.jpx.co.jp/english/" target="_blank" style="color:#0f9; font-weight:bold;">jpx.co.jp →</a></p>
-                `
-            }
-        },
-        {
-            name: "BSE",
-            logo: "Pics/BSE.NS.png",
-            open: 3.75, close: 10.05, tz: 5.5,
-            background: "bse_bg.jpg",
-            modal: {
-                title: "Bombay Stock Exchange (BSE)",
-                link: "https://www.bseindia.com",
-                content: `
-                    <p><strong>Местоположение:</strong> Мумбаи, Индия</p>
-                    <p><strong>Основана:</strong> 1875 год — старейшая биржа Азии</p>
-                    <p><strong>Оборот:</strong> ≈ $4.5 трлн капитализации</p>
-                    <p><strong>Чем торгует:</strong> Акции, деривативы, долговые бумаги, ETF</p>
-                    <p><strong>Ключевые особенности:</strong> Индекс SENSEX-30, одна из самых быстрых платформ в мире</p>
-                    <p style="margin-top:20px"><a href="https://www.bseindia.com" target="_blank" style="color:#0f9; font-weight:bold;">bseindia.com →</a></p>
-                `
-            }
-        },
-        {
-            name: "HKEX",
-            logo: "Pics/HK_BIG.png",
-            open: 1.5, close: 8, tz: 8,
-            background: "hkex_bg.jpg",
-            modal: {
-                title: "HKEX – Hong Kong Exchanges and Clearing",
-                link: "https://www.hkex.com.hk",
-                content: `
-                    <p><strong>Местоположение:</strong> Гонконг</p>
-                    <p><strong>Основана:</strong> 2000 год (слияние)</p>
-                    <p><strong>Оборот:</strong> Лидер по объёму IPO в мире многие годы</p>
-                    <p><strong>Чем торгует:</strong> H-акции китайских компаний, Hang Seng Index, деривативы, LME металлы</p>
-                    <p><strong>Ключевые особенности:</strong> Главные ворота в Китай (Stock Connect), индекс Hang Seng</p>
-                    <p style="margin-top:20px"><a href="https://www.hkex.com.hk" target="_blank" style="color:#0f9; font-weight:bold;">hkex.com.hk →</a></p>
-                `
-            }
-        }
-    ].map(ex => ({
-        ...ex,
-        isHoliday: (d) => d.getUTCDay() === 0 || d.getUTCDay() === 6
-    }));
-
-    let fakeNow = null;
-    function getNow() { return fakeNow ? new Date(fakeNow) : new Date(); }
-
-    function isOpen(ex, now) {
-        if (ex.isHoliday(now)) return false;
-        const h = now.getUTCHours() + now.getUTCMinutes()/60;
-        return ex.open < ex.close ? h >= ex.open && h < ex.close : h >= ex.open || h < ex.close;
-    }
-
-    function timeToOpenStr(ex, now) {
-        let target = new Date(now);
-        do { target.setUTCDate(target.getUTCDate() + 1); } while (ex.isHoliday(target));
-        const [oh, om] = [Math.floor(ex.open), Math.round((ex.open % 1)*60)];
-        target.setUTCHours(oh, om, 0, 0);
-        if (target < now) {
-            do { target.setUTCDate(target.getUTCDate() + 1); } while (ex.isHoliday(target));
-            target.setUTCHours(oh, om, 0, 0);
-        }
-        let diff = target - now;
-        if (diff <= 0) return "Открыта";
-        const h = Math.floor(diff/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000);
-        return `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
-    }
-
-    function createCard(ex) {
-        const card = document.createElement('div');
-        card.className = 'exchange-card';
-        card.innerHTML = `
-            <div class="logo-container"><img src="${ex.logo}" alt="${ex.name}"></div>
-            <div class="timer" style="display:none"></div>
-        `;
-        card.onclick = () => openModal(ex);
-        return card;
-    }
-
-    function openModal(ex) {
-        const modal = document.getElementById('modal');
-        const body = document.getElementById('modal-body');
-        const content = document.querySelector('.modal-content');
-
-        content.style.background = ex.modal 
-            ? `linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)), url('Pics/${ex.modal.background}') center/cover no-repeat`
-            : '#000';
-
-        body.innerHTML = ex.modal ? `
-            <h2 style="color:#0f9; font-size:2.2rem; margin-bottom:20px;">${ex.modal.title}</h2>
-            ${ex.modal.content}
-        ` : `<h2>${ex.name}</h2><p>Инфо скоро...</p>`;
-
-        modal.style.display = 'block';
-    }
-
-    function updateAll() {
-        const now = getNow();
-        document.getElementById('utc-time').textContent = now.toISOString().substr(11,8);
-
-        const active = document.getElementById('active-grid');
-        const sleeping = document.getElementById('sleeping-grid');
-        active.innerHTML = ''; sleeping.innerHTML = '';
-
-        exchanges.forEach(ex => {
-            const card = createCard(ex);
-            const timer = card.querySelector('.timer');
-            if (isOpen(ex, now)) {
-                timer.style.display = 'none';
-                active.appendChild(card);
-            } else {
-                timer.style.display = 'block';
-                timer.textContent = `Открывается через ${timeToOpenStr(ex, now)}`;
-                sleeping.appendChild(card);
-            }
-        });
-    }
-
-    document.querySelector('.close').onclick = () => document.getElementById('modal').style.display='none';
-    window.onclick = e => { if (e.target.id==='modal') document.getElementById('modal').style.display='none'; };
-
-    updateAll();
-    setInterval(updateAll, 1000);
-    </script>
+<script src="ex.js"></script>
 </body>
 </html>
