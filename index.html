@@ -7,6 +7,47 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon"  href="Pics/triangle.png">
 </head>
+    <style>/* === Мобильные улучшения === */
+
+@media (max-width: 768px) {
+    /* 1. Фиксированная высота хэдера — плитки в одну строку */
+    .nav-tiles {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        gap: 10px;
+        padding: 10px 12px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-tiles::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tile {
+        white-space: nowrap;
+        font-size: 0.9rem;
+        padding: 4px 8px;
+        min-width: auto;
+    }
+
+    /* 2. Скрытие боковой навигации (рекомендуется) */
+    .side-nav {
+        display: none;
+    }
+
+    /* 3. Уменьшение заголовков и кнопок */
+    .content h2 {
+        font-size: 3.2rem;
+    }
+
+    .asset-buttons a {
+        padding: 14px 20px;
+        font-size: 1.15rem;
+        min-width: 130px;
+        height: 54px;
+    }
+}</style>
 <body>
 
     <!-- Фиксированная верхняя навигация (плитки) -->
@@ -164,3 +205,4 @@
 </button>
 </body>
 </html>
+
